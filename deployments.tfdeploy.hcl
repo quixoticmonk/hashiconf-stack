@@ -1,3 +1,7 @@
+identity_token "aws" {
+  audience = ["aws.workload.identity"]
+}
+
 deployment "dev" {
   inputs = {
     aws_region   = "us-east-1"
