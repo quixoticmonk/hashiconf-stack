@@ -12,6 +12,7 @@ variable "aws_role_arn" {
 variable "identity_token" {
   type        = string
   description = "Web identity token for role assumption"
+  ephemeral=true
 }
 
 variable "environment" {
