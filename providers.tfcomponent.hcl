@@ -12,8 +12,10 @@ required_providers {
 provider "aws" "main" {
   config {
     region = var.aws_region
-    assume_role {
-      role_arn = var.aws_role_arn
+    
+    assume_role_with_web_identity {
+      role_arn           = var.aws_role_arn
+      web_identity_token = var.identity_token
     }
   }
 }

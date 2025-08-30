@@ -1,12 +1,17 @@
 variable "aws_region" {
   type        = string
   description = "AWS region for resources"
-  default     = "us-east-1"
+  default     = "us-west-2"
 }
 
 variable "aws_role_arn" {
   type        = string
   description = "AWS IAM role ARN to assume"
+}
+
+variable "identity_token" {
+  type        = string
+  description = "Web identity token for role assumption"
 }
 
 variable "environment" {
