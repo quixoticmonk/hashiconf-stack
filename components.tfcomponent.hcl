@@ -44,7 +44,7 @@ component "s3_bucket_1" {
   }
 
   inputs = {
-    bucket = "my-app-data-bucket-${component.random_suffix.hex}"
+    bucket = "my-app-data-bucket-${component.random_suffix.bucket_suffix}"
 
     versioning = {
       enabled = true
@@ -74,7 +74,7 @@ component "s3_bucket_2" {
   }
 
   inputs = {
-    bucket = "my-app-logs-bucket-${component.random_suffix.hex}"
+    bucket = "my-app-logs-bucket-${component.random_suffix.bucket_suffix}"
 
     versioning = {
       enabled = true
