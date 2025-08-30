@@ -1,5 +1,5 @@
 component "random_suffix" {
-  source = "./modules/random-suffix"
+  source = "./modules/random"
 
   providers = {
     random = provider.random.source
