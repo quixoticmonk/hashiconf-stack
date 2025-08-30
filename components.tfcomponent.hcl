@@ -1,8 +1,12 @@
 component "random_suffix" {
-  source = "./modules/random"
+  source = "./modules/random-suffix"
 
   providers = {
-    random = provider.random.main
+    random = provider.random.source
+  }
+
+  inputs = {
+    byte_length = 4
   }
 }
 
@@ -11,14 +15,14 @@ component "vpc" {
   version = "5.8.1"
 
   providers = {
-    aws = provider.aws.main
+    aws = provider.aws.source
   }
 
   inputs = {
     name = "main-vpc"
-    cidr = var.vpc_cidr
+    cidr = "10.0.0.0/16"
 
-    azs             = var.availability_zones
+    azs             = ["us-west-2a", "us-west-2b"]
     private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
     public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
 
@@ -31,16 +35,16 @@ component "vpc" {
   }
 }
 
-component "s3_bucket_data" {
+component "s3_bucket_1" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "4.1.2"
 
   providers = {
-    aws = provider.aws.main
+    aws = provider.aws.source
   }
 
   inputs = {
-    bucket = "my-app-data-bucket-${component.random_suffix.bucket_suffix}"
+    bucket = "my-app-data-bucket-${component.random_suffix.hex}"
 
     versioning = {
       enabled = true
@@ -61,16 +65,16 @@ component "s3_bucket_data" {
   }
 }
 
-component "s3_bucket_logs" {
+component "s3_bucket_2" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "4.1.2"
 
   providers = {
-    aws = provider.aws.main
+    aws = provider.aws.source
   }
 
   inputs = {
-    bucket = "my-app-logs-bucket-${component.random_suffix.bucket_suffix}"
+    bucket = "my-app-logs-bucket-${component.random_suffix.hex}"
 
     versioning = {
       enabled = true
