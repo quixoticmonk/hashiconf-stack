@@ -11,6 +11,15 @@ deployment "dev" {
 deployment_group = deployment_group.test_stack
 }
 
+deployment "test" {
+  inputs = {
+    aws_role_arn    ="arn:aws:iam::697621333100:role/may-webinar-role"
+    identity_token  = identity_token.aws.jwt
+    environment     = "test"
+  }
+deployment_group = deployment_group.test_stack
+}
+
 deployment_group "test_stack" {
   auto_approve_checks = [
     deployment_auto_approve.no_destroy
