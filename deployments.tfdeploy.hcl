@@ -8,4 +8,5 @@ deployment "dev" {
     identity_token  = identity_token.aws.jwt
     environment     = "dev"
   }
+  destroy=true
 }
