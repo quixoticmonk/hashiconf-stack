@@ -9,7 +9,7 @@ deployment "dev" {
     environment     = "dev"
   }
 deployment_group = deployment_group.test_stack
-destroy=true
+
 }
 
 // deployment "test" {
